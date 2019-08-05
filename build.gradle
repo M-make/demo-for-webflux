@@ -1,9 +1,11 @@
 plugins {
 	id 'org.springframework.boot' version '2.2.0.M4'
 	id 'java'
+    id "io.freefair.lombok" version "3.8.2"
 }
 
 apply plugin: 'io.spring.dependency-management'
+apply plugin: 'idea'
 
 group = 'org.flux'
 version = '0.0.1-SNAPSHOT'
