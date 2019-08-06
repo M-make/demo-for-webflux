@@ -49,7 +49,7 @@ public class ReactorNetty {
                                 response.addHeader(HttpHeaders.CONTENT_TYPE,MediaType.TEXT_HTML_VALUE);
                                 String index = new TemplateEngine().process(
                                         log(new String(Files.readAllBytes(
-                                                Paths.get(Thread.currentThread().getContextClassLoader().getResource("templates/index.html").toURI())
+                                                Paths.get(Thread.currentThread().getContextClassLoader().getResource("static/index.html").toURI())
                                         ))), new Context(Locale.CHINA, map));
                                 return response.sendString(Mono.just(index));
                             } catch (Exception e) {
