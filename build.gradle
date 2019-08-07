@@ -18,6 +18,10 @@ repositories {
 
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-webflux'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'io.reactivex.rxjava2:rxjava:2.1.17'
+    implementation 'com.squareup.okhttp3:okhttp:4.0.0'
+
     implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
     implementation 'ognl:ognl:3.2.10'
     testImplementation('org.springframework.boot:spring-boot-starter-test') {

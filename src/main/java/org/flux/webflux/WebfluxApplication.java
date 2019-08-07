@@ -28,28 +28,28 @@ public class WebfluxApplication {
         SpringApplication.run(WebfluxApplication.class, args);
     }
 
-    @Bean
-    public HandlerMapping handlerMapping(){
-        SimpleUrlHandlerMapping urlHandlerMapping =
-                new SimpleUrlHandlerMapping();
-        Map<String,Object> urlMap = new HashMap<>();
-        urlMap.put("/ws",(WebSocketHandler)(session)-> session
-                .send( session.receive()
-                        .map(msg -> "RECEIVED ON SERVER :: " + msg.getPayloadAsText())
-                        .map(session::textMessage)
-                        .map((mes)->{
-                            System.out.println(mes.getPayloadAsText());
-                            return mes;
-                        })
-                ));
-        urlHandlerMapping.setUrlMap(urlMap);
-        urlHandlerMapping.setOrder(Ordered.HIGHEST_PRECEDENCE);
-        return urlHandlerMapping;
-    }
-
-    @Bean
-    public HandlerAdapter handlerAdapter(){
-	    return new WebSocketHandlerAdapter();
-    }
+//    @Bean
+//    public HandlerMapping handlerMapping(){
+//        SimpleUrlHandlerMapping urlHandlerMapping =
+//                new SimpleUrlHandlerMapping();
+//        Map<String,Object> urlMap = new HashMap<>();
+//        urlMap.put("/ws",(WebSocketHandler)(session)-> session
+//                .send( session.receive()
+//                        .map(msg -> "RECEIVED ON SERVER :: " + msg.getPayloadAsText())
+//                        .map(session::textMessage)
+//                        .map((mes)->{
+//                            System.out.println(mes.getPayloadAsText());
+//                            return mes;
+//                        })
+//                ));
+//        urlHandlerMapping.setUrlMap(urlMap);
+//        urlHandlerMapping.setOrder(Ordered.HIGHEST_PRECEDENCE);
+//        return urlHandlerMapping;
+//    }
+//
+//    @Bean
+//    public HandlerAdapter handlerAdapter(){
+//	    return new WebSocketHandlerAdapter();
+//    }
 
 }
