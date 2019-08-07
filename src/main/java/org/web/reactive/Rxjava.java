@@ -1,4 +1,4 @@
-package org.flux.webflux;
+package org.web.reactive;
 
 import io.reactivex.Observable;
 

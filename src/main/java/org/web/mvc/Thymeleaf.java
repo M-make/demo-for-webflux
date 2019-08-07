@@ -1,4 +1,4 @@
-package org.flux.webflux.controller;
+package org.web.mvc;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.DependsOn;
@@ -34,40 +34,12 @@ import java.util.concurrent.*;
  * @date 2019-07-29
  */
 @Controller
-public class Web extends ApplicationObjectSupport {
+public class Thymeleaf extends ApplicationObjectSupport {
 
-//    @RequestMapping("/**")
-//    public String getAll(Model model){
-//        model.addAttribute("name","虎");
-//        return "index";
-//    }
-
-//    @Bean
-//    public RouterFunction<ServerResponse> routerFunction(){
-//        return (ServerRequest request)->
-//                Mono.just((HandlerFunction<ServerResponse>)(res)->ServerResponse.ok().syncBody("11"));
-//    }
-
-    private static final ExecutorService EXECUTOR_SERVICE = new ThreadPoolExecutor(
-            1,1,0L, TimeUnit.DAYS, new LinkedBlockingQueue<>()
-    );
-
-
-    @GetMapping("/sse")
-    public SseEmitter sse() {
-        SseEmitter emitter = new SseEmitter();
-        EXECUTOR_SERVICE.submit(() -> {
-            try {
-                for (int i = 0; i < 1000000; i++) {
-                    Thread.sleep(1000);
-                    emitter.send(String.format("%s 第%s个数据",Thread.currentThread().getName(),i));
-                }
-                emitter.complete();
-            } catch (Exception ex) {
-                emitter.completeWithError(ex);
-            }
-        });
-        return emitter;
+    @RequestMapping("/**")
+    public String getAll(Model model){
+        model.addAttribute("name","虎");
+        return "index";
     }
 
 }

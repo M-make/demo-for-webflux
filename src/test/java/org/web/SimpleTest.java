@@ -1,4 +1,4 @@
-package org.flux.webflux;
+package org.web;
 
 import org.junit.jupiter.api.Test;
 import org.reactivestreams.Subscription;

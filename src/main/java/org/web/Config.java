@@ -1,4 +1,4 @@
-package org.flux.webflux;
+package org.web;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
