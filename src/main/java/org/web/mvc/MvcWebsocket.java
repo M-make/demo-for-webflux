@@ -15,19 +15,19 @@ import org.springframework.web.socket.handler.TextWebSocketHandler;
 @Configuration
 public class MvcWebsocket implements WebSocketConfigurer {
 
-    @Override
-    public void registerWebSocketHandlers(WebSocketHandlerRegistry registry) {
-        registry.addHandler(new TextWebSocketHandler() {
+  @Override
+  public void registerWebSocketHandlers(WebSocketHandlerRegistry registry) {
+    registry.addHandler(new TextWebSocketHandler() {
 
-            @Override
-            public void afterConnectionEstablished(WebSocketSession session) throws Exception {
-                session.sendMessage(new TextMessage("建立连接"));
-            }
+      @Override
+      public void afterConnectionEstablished(WebSocketSession session) throws Exception {
+        session.sendMessage(new TextMessage("建立连接"));
+      }
 
-            @Override
-            protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
-                session.sendMessage(message);
-            }
-        },"/mvc_ws").setAllowedOrigins("*");
-    }
+      @Override
+      protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
+        session.sendMessage(message);
+      }
+    }, "/mvc_ws").setAllowedOrigins("*");
+  }
 }

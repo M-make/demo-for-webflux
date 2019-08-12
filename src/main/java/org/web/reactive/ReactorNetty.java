@@ -24,43 +24,43 @@ import java.util.Map;
  */
 @SuppressWarnings("Duplicates")
 public class ReactorNetty {
-    public static void main(String[] args) throws Exception {
-        LoggingSystem.get(ReactorNetty.class.getClassLoader()).setLogLevel("root", LogLevel.INFO);
-        ObjectMapper objectMapper = new ObjectMapper();
-        HttpServer.create()   // Prepares an HTTP server ready for configuration
-                .port(10010)    // Configures the port number as zero, this will let the system pick up
-                .route(routes ->
-                        routes
+  public static void main(String[] args) throws Exception {
+    LoggingSystem.get(ReactorNetty.class.getClassLoader()).setLogLevel("root", LogLevel.INFO);
+    ObjectMapper objectMapper = new ObjectMapper();
+    HttpServer.create()   // Prepares an HTTP server ready for configuration
+        .port(10010)    // Configures the port number as zero, this will let the system pick up
+        .route(routes ->
+                routes
 //                                .get("/test1/{param}", ReactorNetty::doRoute)
-                                .get("/**", (request, response) ->
-                                response.sendString(Mono.justOrEmpty("DDD"))
-                        ).get("/test2/{param}", (request, response) ->
-                        {
-                            try {
-                                response.addHeader("Content-Type", "application/json");
-                                return response.sendString(Mono.justOrEmpty(objectMapper.writeValueAsString(
-                                        request.params()
-                                )));
-                            } catch (JsonProcessingException e) {
-                                return Mono.error(e);
-                            }
-                        }).get("/test3", (request, response) -> {
-                            Map<String, Object> map = new HashMap<>();
-                            map.put("name", "BIG");
-                            try {
-                                response.addHeader(HttpHeaders.CONTENT_TYPE, MediaType.TEXT_HTML_VALUE);
-                                String index = new TemplateEngine().process(
-                                        log(new String(Files.readAllBytes(
-                                                Paths.get(Thread.currentThread().getContextClassLoader().getResource("static/index.html").toURI())
-                                        ))), new Context(Locale.CHINA, map));
-                                return response.sendString(Mono.just(index));
-                            } catch (Exception e) {
-                                return response.sendString(Mono.error(e));
-                            }
-                        })
-                )
-                .bindUntilJavaShutdown(Duration.ZERO, null);
-    }
+                    .get("/**", (request, response) ->
+                        response.sendString(Mono.justOrEmpty("DDD"))
+                    ).get("/test2/{param}", (request, response) ->
+                {
+                  try {
+                    response.addHeader("Content-Type", "application/json");
+                    return response.sendString(Mono.justOrEmpty(objectMapper.writeValueAsString(
+                        request.params()
+                    )));
+                  } catch (JsonProcessingException e) {
+                    return Mono.error(e);
+                  }
+                }).get("/test3", (request, response) -> {
+                  Map<String, Object> map = new HashMap<>();
+                  map.put("name", "BIG");
+                  try {
+                    response.addHeader(HttpHeaders.CONTENT_TYPE, MediaType.TEXT_HTML_VALUE);
+                    String index = new TemplateEngine().process(
+                        log(new String(Files.readAllBytes(
+                            Paths.get(Thread.currentThread().getContextClassLoader().getResource("static/index.html").toURI())
+                        ))), new Context(Locale.CHINA, map));
+                    return response.sendString(Mono.just(index));
+                  } catch (Exception e) {
+                    return response.sendString(Mono.error(e));
+                  }
+                })
+        )
+        .bindUntilJavaShutdown(Duration.ZERO, null);
+  }
 
 //    private static Publisher<Void> doRoute(HttpServerRequest request, HttpServerResponse response) {
 //        try {
@@ -89,8 +89,8 @@ public class ReactorNetty {
 //    }
 
 
-    public static <T> T log(T t) {
-        System.out.println(t);
-        return t;
-    }
+  public static <T> T log(T t) {
+    System.out.println(t);
+    return t;
+  }
 }

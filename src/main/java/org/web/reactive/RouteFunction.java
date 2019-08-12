@@ -14,9 +14,9 @@ import reactor.core.publisher.Mono;
  */
 @Controller
 public class RouteFunction {
-    @Bean
-    public RouterFunction<ServerResponse> routerFunction(){
-        return (ServerRequest request)->
-                Mono.just((HandlerFunction<ServerResponse>)(res)->ServerResponse.ok().syncBody("11"));
-    }
+  @Bean
+  public RouterFunction<ServerResponse> routerFunction() {
+    return (ServerRequest request) ->
+        Mono.just((HandlerFunction<ServerResponse>) (res) -> ServerResponse.ok().syncBody("11"));
+  }
 }
