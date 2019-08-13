@@ -1,17 +1,13 @@
 package org.web.reactive;
 
-import org.reactivestreams.Publisher;
-import reactor.core.publisher.ConnectableFlux;
-import reactor.core.publisher.Flux;
-import reactor.core.publisher.Mono;
-
 import java.time.Duration;
 import java.time.temporal.ChronoUnit;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
-import java.util.function.Supplier;
+import reactor.core.publisher.ConnectableFlux;
+import reactor.core.publisher.Flux;
 
 /**
  * @author ☞ 🏀 huqingfeng
@@ -23,7 +19,21 @@ public class Reactor {
 //        java2();
 //        java3();
 //        java4();
-    java5();
+//    java5();
+    java6();
+  }
+
+  private static void java6() throws Exception {
+    Flux.interval(Duration.ofMillis(250))
+        .map(input -> {
+          if (input < 3) return "tick " + input;
+          throw new RuntimeException("boom");
+        })
+        .retry(1)
+        .elapsed()
+        .subscribe(System.out::println, System.err::println);
+
+    TimeUnit.DAYS.sleep(1L);
   }
 
   private static void java5() throws Exception {
