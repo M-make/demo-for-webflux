@@ -17,7 +17,10 @@ public class WebfluxApplication {
 
   public static void main(String[] args) throws Exception {
     SpringApplication.run(WebfluxApplication.class, args);
+    System.out.println();
   }
+
+  public void show(){}
 
   @Bean
   public HandlerMapping handlerMapping() {
