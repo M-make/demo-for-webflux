@@ -15,14 +15,9 @@ import java.util.Map;
 @SpringBootApplication
 public class WebfluxApplication {
 
-  public void show1(){}
-
   public static void main(String[] args) throws Exception {
     SpringApplication.run(WebfluxApplication.class, args);
-    String s = "";
   }
-
-  public void show(){}
 
   @Bean
   public HandlerMapping handlerMapping() {
